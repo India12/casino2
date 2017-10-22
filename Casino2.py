@@ -1,20 +1,34 @@
-#-*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-secret = 7
+import random
+
 min = 1
-max = 50
+max = 30
 
-guess = raw_input("Ugani skrito številko med 1 in 50. Prosimo, vnesite številko: ")
+def main():
+    again = "da"
 
-if guess.isdigit():
-    guess = int(guess)
-    if guess == secret:
-        print "Čestitamo, uganili ste skrito številko."
-    elif guess < min:
-        print "Napaka! Niste vnesli številke med 1 in 50. Vnesli ste manjše število, t.j.: " + str(guess)
-    elif guess > max:
-        print "Napaka! Niste vnesli številke med 1 in 50. Vnesli ste večje število, t.j.: " + str(guess)
-    else:
-        print "Žal, niste uganili skrite številke. Skrita številka je: " + str(secret)
-else:
-    print "Napaka! Niste vnesli števila, vnesli ste črko: " + str(guess)
+    while again.lower() == "da":
+        secret = random.randint(0, 30)
+        guess = raw_input("Ugani skrito številko med 1 in 30. Prosimo, vnesite številko: ")
+
+
+        if guess.isdigit():
+            guess = int(guess)
+            if guess == secret:
+                print ("Čestitamo, uganili ste skrito številko.")
+                break
+            elif guess < min or guess > max:
+                print ("Napaka! Niste vnesli številke med 1 in 30. Vnesli ste večje ali manjše število, t.j.: " + str(guess))
+                print ("Skrita številka je: " + str(secret))
+            else:
+                print ("Žal niste uganili skrite številke.")
+            again = raw_input("Ali želite ponovno ugibati? (da/ne) ")
+
+        else:
+            print ("Napaka! Niste vnesli števila med 1 in 30, vnesli ste: " + str(guess))
+            again = raw_input("Ali želite ponovno ugibati? (da/ne) ")
+
+if __name__ == "__main__":
+    main()
